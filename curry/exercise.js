@@ -6,8 +6,7 @@ var match = curry((f, ary) => ary.match(f));
 var split = curry((reg, str) => str.split(reg));
 var map = curry((f, ary) => ary.map(f));
 var filter = curry((f, ary) => ary.filter(f));
-var reduce = curry((f, initialValue, ary) => 
-ary.reduce(f, initialValue));
+var reduce = curry((f, initialValue, ary) => ary.reduce(f, initialValue));
 // 练习 1
 //==============
 // 通过局部调用（partial apply）移除所有参数
