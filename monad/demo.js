@@ -58,3 +58,27 @@ log(betterFirstAddressStreet({
     }]
 }));
 // Maybe({name: 'Mulburry', number: 8402})
+
+/* 
+    将map和join的组合打包，叫做chain
+*/
+// chain :: Monad m => (a -> mb) -> m a -> mb
+var chain = _.curry((f, m) => {
+    return m.map(f).join();
+    // 或 return _.compose(join, map(f))(m);
+});
+
+var betterEverFirstAddressStreet = _.compose(
+    chain(safeProp('street')), chain(safeHead), safeProp('addresses')
+);
+
+log(betterEverFirstAddressStreet({
+    addresses: [{
+        street: {
+            name: 'Mulburry',
+            number: 8402
+        },
+        postcode: "WC2N"
+    }]
+}));
+// Maybe({name: 'Mulburry', number: 8402})
